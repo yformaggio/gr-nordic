@@ -24,7 +24,8 @@ list(APPEND nordic_sources
     nordic_rx_impl.cc
     bit_shifting_byte_vector.cc
     nordic_tx_impl.cc
-    enhanced_shockburst_packet.cc )
+    enhanced_shockburst_packet.cc
+    shockburst_packet.cc )
 
 set(nordic_sources "${nordic_sources}" PARENT_SCOPE)
 if(NOT nordic_sources)

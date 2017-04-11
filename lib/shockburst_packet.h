@@ -25,14 +25,16 @@
 #include <stdint.h>
 
 
-class shockburst_packet {
+class shockburst_packet
+{
  public:
   // Constructor
   shockburst_packet(uint8_t address_length,
 		    uint8_t payload_length,
 		    uint8_t crc_length,
 		    uint8_t *address,
-		    uint8_t *payload);
+		    uint8_t *payload
+		    );
 
   // Destructor
   ~shockburst_packet();
@@ -42,7 +44,7 @@ class shockburst_packet {
 			const uint8_t *bytes_shifted,
 			uint8_t address_length,
 			uint8_t crc_length,
-			shockburt_packet *& packet);
+			shockburst_packet *& packet);
   // Process a CRC byte
   static uint16_t crc_update(uint16_t crc, uint8_t data, uint8_t bits=8);
 
@@ -52,8 +54,6 @@ class shockburst_packet {
   // Getters
   const uint8_t payload_length() { return m_payload_length; }
   const uint8_t bytes_length() { return m_packet_length_bytes; }
-  const uint8_t sequence_number() { return m_sequence_number; }
-  const uint8_t no_ack() { return m_no_ack; }
   const uint8_t * address() { return m_address; }
   const uint8_t * payload() { return m_payload; }
   const uint8_t * crc() { return m_crc; }
@@ -85,6 +85,6 @@ class shockburst_packet {
   // Assembled packet bytes
   uint8_t * m_packet_bytes;
 
-} __attribute__((packed))
+} __attribute__((packed));
 
-#endif /* !SHOCKBURST_PACKET_H
+#endif /* !SHOCKBURST_PACKET_H */

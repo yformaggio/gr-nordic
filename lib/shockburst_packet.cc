@@ -88,11 +88,11 @@ shockburst_packet::~shockburst_packet()
 
 
 // Attempt to parse a packet from some incoming bytes
-static bool try_parse(const uint8_t *bytes,
+bool shockburst_packet::try_parse(const uint8_t *bytes,
 		      const uint8_t *bytes_shifted,
 		      uint8_t address_length,
 		      uint8_t crc_length,
-		      shockburt_packet *& packet)
+		      shockburst_packet *& packet)
 {
   // Read the payload length
   uint8_t payload_length = 11; // TODO: find a way to calculate payload length
