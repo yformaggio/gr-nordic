@@ -22,11 +22,11 @@ struct nordictap_header
   // Payload length
   uint8_t payload_length;
 
-  // Sequence number (ESB)
-  uint8_t sequence_number;
-
-  // No ACK bit (ESB)
-  bool no_ack;
+//  // Sequence number (ESB)
+//  uint8_t sequence_number;
+//
+//  // No ACK bit (ESB)
+//  bool no_ack;
 
   // CRC length, in bytes
   uint8_t crc_length;

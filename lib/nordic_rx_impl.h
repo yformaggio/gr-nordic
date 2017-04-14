@@ -24,7 +24,7 @@
 #include <nordic/nordic_rx.h>
 #include <boost/crc.hpp>
 #include "bit_shifting_byte_vector.h"
-#include "enhanced_shockburst_packet.h"
+#include "shockburst_packet.h"
 
 namespace gr {
   namespace nordic {
@@ -45,8 +45,8 @@ namespace gr {
       // Incoming bit/byte vector
       bit_shifting_byte_vector m_decoded_bits_bytes;
 
-      // Enhanced shockburst packet
-      enhanced_shockburst_packet * m_enhanced_shockburst;
+      // shockburst packet
+      shockburst_packet * m_shockburst;
 
      public:
 

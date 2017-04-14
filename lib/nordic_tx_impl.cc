@@ -26,7 +26,7 @@
 #include <gnuradio/fxpt.h>
 #include "nordic_tx_impl.h"
 #include "nordictap.h"
-#include "enhanced_shockburst_packet.h"
+#include "shockburst_packet.h"
 
 namespace gr {
   namespace nordic {
@@ -95,11 +95,11 @@ namespace gr {
         memcpy(payload, &blob[sizeof(nordictap_header)+1 + alen], plen);
 
         // Build the packet
-        enhanced_shockburst_packet * packet =
-          new enhanced_shockburst_packet(header.address_length,
+        shockburst_packet * packet =
+          new shockburst_packet(header.address_length,
                                          header.payload_length,
-                                         header.sequence_number,
-                                         header.no_ack,
+//                                         header.sequence_number,
+//                                         header.no_ack,
                                          header.crc_length,
                                          address,
                                          payload);

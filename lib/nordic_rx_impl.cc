@@ -89,29 +89,29 @@ namespace gr {
           if((bytes[0] & 0x80) == (bytes[1] & 0x80))
           {
             // Attempt to decode a payload
-            if(enhanced_shockburst_packet::try_parse(bytes,
-                                                     m_decoded_bits_bytes.bytes(0),
-                                                     m_address_length,
-                                                     m_crc_length,
-                                                     m_enhanced_shockburst))
+            if(shockburst_packet::try_parse(bytes,
+                                            m_decoded_bits_bytes.bytes(0),
+                                            m_address_length,
+                                            m_crc_length,
+                                            m_shockburst))
             {
               // Build the wireshark header
               nordictap_header header;
               header.channel = m_channel;
               header.data_rate = m_data_rate;
               header.address_length = m_address_length;
-              header.payload_length = m_enhanced_shockburst->payload_length();
-              header.sequence_number = m_enhanced_shockburst->sequence_number();
-              header.no_ack = m_enhanced_shockburst->no_ack();
+              header.payload_length = m_shockburst->payload_length();
+//              header.sequence_number = m_shockburst->sequence_number();
+//              header.no_ack = m_shockburst->no_ack();
               header.crc_length = m_crc_length;
 
               // Concatenate the header, address, payload, and CRC
               uint8_t buffer_length = sizeof(nordictap_header) + m_address_length + header.payload_length + m_crc_length;
               uint8_t * buffer = new uint8_t[buffer_length];
               memcpy(&buffer[0], &header, sizeof(nordictap_header));
-              memcpy(&buffer[sizeof(nordictap_header)], m_enhanced_shockburst->address(), m_address_length);
-              memcpy(&buffer[sizeof(nordictap_header) + m_address_length], m_enhanced_shockburst->payload(), header.payload_length);
-              memcpy(&buffer[sizeof(nordictap_header) + m_address_length + header.payload_length], m_enhanced_shockburst->crc(), m_crc_length);
+              memcpy(&buffer[sizeof(nordictap_header)], m_shockburst->address(), m_address_length);
+              memcpy(&buffer[sizeof(nordictap_header) + m_address_length], m_shockburst->payload(), header.payload_length);
+              memcpy(&buffer[sizeof(nordictap_header) + m_address_length + header.payload_length], m_shockburst->crc(), m_crc_length);
 
               // Send the packet to wireshark
               boost::asio::io_service io_service;
