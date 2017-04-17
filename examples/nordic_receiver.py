@@ -77,14 +77,14 @@ class nordictap_printer(gr.sync_block):
         data = pmt.to_python(msg).tostring()
 
         # Unpack the header
-        values = struct.unpack('BBBBBBBB', data[0:8])
+        values = struct.unpack('BBBBBB', data[0:6])
         channel = values[0]
         data_rate = values[1]
         address_length = values[2]
         payload_length = values[3]
-        sequence_number = values[4]
-        no_ack = values[5]
-        crc_length = values[6]
+        # sequence_number = values[4]
+        # no_ack = values[5]
+        crc_length = values[4]
 
         # Parse the address, payload, and crc
         address = data[7:7 + address_length]
@@ -94,7 +94,7 @@ class nordictap_printer(gr.sync_block):
 
         # Print the channel, sequence number, address and payload
         print 'CH=' + str(2400 + channel),
-        print 'SEQ=' + str(sequence_number),
+        # print 'SEQ=' + str(sequence_number),
         print 'ADDR=' + ':'.join('%02X' % ord(b) for b in address),
         print 'PLD=' + ':'.join('%02X' % ord(b) for b in payload),
         print 'CRC=' + ':'.join('%02X' % ord(b) for b in crc)
